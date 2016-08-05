@@ -23,7 +23,7 @@ namespace BMI_calc
 {
     public partial class BMICalculator : Form
     {
-        private bool heightInput = false;
+        bool heightInput = false;
         bool weightInput = false;
 
         public BMICalculator()
@@ -66,7 +66,7 @@ private void HeightTB_Click(object sender, EventArgs e)
         }
 
         /*Clear Button*/
-        private void button12_Click(object sender, EventArgs e)
+        private void ClearBtn_Click(object sender, EventArgs e)
         {
             HeightTB.Text = "";
             WeightTB.Text = "";
@@ -75,7 +75,7 @@ private void HeightTB_Click(object sender, EventArgs e)
         }
 
         /*Backspace Btn*/
-        private void button13_Click(object sender, EventArgs e)
+        private void backspaceBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -100,7 +100,5 @@ private void HeightTB_Click(object sender, EventArgs e)
                 return;
             }
         }
-
-        
     }
 }
