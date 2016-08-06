@@ -17,7 +17,7 @@ using System.Windows.Forms;
  * Date Created: July 21 2016
  * Program Description: This program calculates an individuals BMI a.k.a Body Mass Index
  * 
- * Version 0.0.3: Corrected spelling errors 
+ * Version 0.0.4: Added splash scrren & progress bar  
  */
 namespace BMI_calc
 {
@@ -39,7 +39,8 @@ namespace BMI_calc
         }
 
         /***
-         * Allows the program to get the appropriate formula to use for calculateing BMI
+         * Allows the program to use the appropriate formula when calculateing BMI
+         * 
          */
         public string ForumlaType
         {
@@ -113,15 +114,15 @@ private void HeightTB_Click(object sender, EventArgs e)
 
         private void metricRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
-            HeightLbl.Text = "My Height [CM]";
-            WeightLbl.Text = "My Weight [KG]";
+            HeightLbl.Text = "My Height CM";
+            WeightLbl.Text = "My Weight KG";
             this.ForumlaType = metricRadioBtn.Text;
         }
 
         private void ImperialRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
-            HeightLbl.Text = "My Height [IN]";
-            WeightLbl.Text = "My Weight [LBS]";
+            HeightLbl.Text = "My Height IN";
+            WeightLbl.Text = "My Weight LBS";
             this.ForumlaType = ImperialRadioBtn.Text;
         }
 
@@ -131,6 +132,13 @@ private void HeightTB_Click(object sender, EventArgs e)
         }
 
         
+        /***
+         * <summary>
+         * This method performs the metric and Imperial methods
+         * </summary> 
+         * 
+         * 
+         */
         public double Calculation()
         {
             double userBMI = 0;
@@ -148,32 +156,52 @@ private void HeightTB_Click(object sender, EventArgs e)
             {
                 userBMI = (userWeight/(userHeight/100)*(userHeight/100));
             }
+            this.timer1.Start();
+
+            if (userBMI < 18.5)
+            {
+                userBMIStatus.ForeColor = Color.DarkOrange;
+            }
+
+            else if (userBMI >= 18.5 && userBMI <= 24.9)
+            {
+                userBMIStatus.ForeColor = Color.MediumSeaGreen;
+            }
             return userBMI;
+            
         }
 
         public string bmiOutput()
         {
-            double userBmi = Calculation();
+            double userBMI = Calculation();
             string bmiOutput = "";
 
-            if (userBmi < 18.5)
+            if (userBMI < 18.5)
             {
+                userBMIStatus.ForeColor = Color.DarkOrange;
                 bmiOutput = "Underweight";
+                
             }
 
-            else if (userBmi >=18.5 && userBmi <= 24.9)
+            else if (userBMI >=18.5 && userBMI <= 24.9)
             {
+                userBMIStatus.ForeColor = Color.MediumSeaGreen;
                 bmiOutput = "Normal";
+                
             }
 
-            else if (userBmi >= 25 && userBmi <= 29.9)
+            else if (userBMI >= 25 && userBMI <= 29.9)
             {
+                userBMIStatus.ForeColor = Color.Yellow;
                 bmiOutput = "Overweight";
+                
             }
 
-            else if (userBmi >= 30)
+            else if (userBMI >= 30)
             {
+                userBMIStatus.ForeColor = Color.Red;
                 bmiOutput = "Obese";
+                
             }
             return bmiOutput;
         }
@@ -214,6 +242,11 @@ private void HeightTB_Click(object sender, EventArgs e)
 
             OutputTB.Text = UserResult();
             ResultsTB.Text = bmiOutput();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.userBMIStatus.Increment(1);
         }
     }
 }

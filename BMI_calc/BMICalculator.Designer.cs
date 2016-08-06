@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BMI_layout = new System.Windows.Forms.TableLayoutPanel();
             this.ImperialRadioBtn = new System.Windows.Forms.RadioButton();
             this.metricRadioBtn = new System.Windows.Forms.RadioButton();
@@ -51,6 +52,8 @@
             this.nineBtn = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.userBMIStatus = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.BMI_layout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,10 +71,10 @@
             this.BMI_layout.Location = new System.Drawing.Point(4, 4);
             this.BMI_layout.Name = "BMI_layout";
             this.BMI_layout.RowCount = 3;
-            this.BMI_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.88489F));
-            this.BMI_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.11511F));
-            this.BMI_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.BMI_layout.Size = new System.Drawing.Size(296, 187);
+            this.BMI_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.5F));
+            this.BMI_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.BMI_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.BMI_layout.Size = new System.Drawing.Size(296, 152);
             this.BMI_layout.TabIndex = 0;
             // 
             // ImperialRadioBtn
@@ -104,7 +107,7 @@
             // 
             this.HeightLbl.AutoSize = true;
             this.HeightLbl.Font = new System.Drawing.Font("Lora", 13F);
-            this.HeightLbl.Location = new System.Drawing.Point(3, 61);
+            this.HeightLbl.Location = new System.Drawing.Point(3, 66);
             this.HeightLbl.Name = "HeightLbl";
             this.HeightLbl.Size = new System.Drawing.Size(100, 27);
             this.HeightLbl.TabIndex = 1;
@@ -115,7 +118,7 @@
             // 
             this.WeightLbl.AutoSize = true;
             this.WeightLbl.Font = new System.Drawing.Font("Lora", 13F);
-            this.WeightLbl.Location = new System.Drawing.Point(151, 61);
+            this.WeightLbl.Location = new System.Drawing.Point(151, 66);
             this.WeightLbl.Name = "WeightLbl";
             this.WeightLbl.Size = new System.Drawing.Size(104, 27);
             this.WeightLbl.TabIndex = 2;
@@ -124,7 +127,7 @@
             // HeightTB
             // 
             this.HeightTB.Font = new System.Drawing.Font("Lora", 20F);
-            this.HeightTB.Location = new System.Drawing.Point(3, 142);
+            this.HeightTB.Location = new System.Drawing.Point(3, 109);
             this.HeightTB.Name = "HeightTB";
             this.HeightTB.Size = new System.Drawing.Size(142, 40);
             this.HeightTB.TabIndex = 1;
@@ -132,7 +135,7 @@
             // 
             // WeightTB
             // 
-            this.WeightTB.Location = new System.Drawing.Point(151, 142);
+            this.WeightTB.Location = new System.Drawing.Point(151, 109);
             this.WeightTB.Name = "WeightTB";
             this.WeightTB.Size = new System.Drawing.Size(142, 40);
             this.WeightTB.TabIndex = 2;
@@ -143,7 +146,7 @@
             this.CalculateBMIBtn.BackColor = System.Drawing.Color.LightSeaGreen;
             this.CalculateBMIBtn.Font = new System.Drawing.Font("Lora", 20F);
             this.CalculateBMIBtn.ForeColor = System.Drawing.Color.White;
-            this.CalculateBMIBtn.Location = new System.Drawing.Point(2, 313);
+            this.CalculateBMIBtn.Location = new System.Drawing.Point(2, 275);
             this.CalculateBMIBtn.Name = "CalculateBMIBtn";
             this.CalculateBMIBtn.Size = new System.Drawing.Size(297, 51);
             this.CalculateBMIBtn.TabIndex = 4;
@@ -158,7 +161,7 @@
             this.ResultsTB.Multiline = true;
             this.ResultsTB.Name = "ResultsTB";
             this.ResultsTB.ReadOnly = true;
-            this.ResultsTB.Size = new System.Drawing.Size(112, 36);
+            this.ResultsTB.Size = new System.Drawing.Size(125, 36);
             this.ResultsTB.TabIndex = 6;
             // 
             // ResultsLbl
@@ -168,7 +171,7 @@
             this.ResultsLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResultsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.ResultsLbl.ForeColor = System.Drawing.Color.White;
-            this.ResultsLbl.Location = new System.Drawing.Point(5, 368);
+            this.ResultsLbl.Location = new System.Drawing.Point(14, 368);
             this.ResultsLbl.Name = "ResultsLbl";
             this.ResultsLbl.Size = new System.Drawing.Size(106, 31);
             this.ResultsLbl.TabIndex = 7;
@@ -177,17 +180,17 @@
             // OutputTB
             // 
             this.OutputTB.Font = new System.Drawing.Font("Open Sans", 11F);
-            this.OutputTB.Location = new System.Drawing.Point(120, 365);
+            this.OutputTB.Location = new System.Drawing.Point(135, 368);
             this.OutputTB.Multiline = true;
             this.OutputTB.Name = "OutputTB";
             this.OutputTB.ReadOnly = true;
-            this.OutputTB.Size = new System.Drawing.Size(181, 75);
+            this.OutputTB.Size = new System.Drawing.Size(166, 72);
             this.OutputTB.TabIndex = 8;
             // 
             // zeroBtn
             // 
             this.zeroBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.zeroBtn.Location = new System.Drawing.Point(7, 197);
+            this.zeroBtn.Location = new System.Drawing.Point(7, 159);
             this.zeroBtn.Name = "zeroBtn";
             this.zeroBtn.Size = new System.Drawing.Size(41, 32);
             this.zeroBtn.TabIndex = 9;
@@ -198,7 +201,7 @@
             // oneBtn
             // 
             this.oneBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.oneBtn.Location = new System.Drawing.Point(58, 197);
+            this.oneBtn.Location = new System.Drawing.Point(58, 159);
             this.oneBtn.Name = "oneBtn";
             this.oneBtn.Size = new System.Drawing.Size(41, 32);
             this.oneBtn.TabIndex = 10;
@@ -209,7 +212,7 @@
             // twoBtn
             // 
             this.twoBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.twoBtn.Location = new System.Drawing.Point(106, 197);
+            this.twoBtn.Location = new System.Drawing.Point(106, 159);
             this.twoBtn.Name = "twoBtn";
             this.twoBtn.Size = new System.Drawing.Size(41, 32);
             this.twoBtn.TabIndex = 11;
@@ -220,7 +223,7 @@
             // threeBtn
             // 
             this.threeBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.threeBtn.Location = new System.Drawing.Point(154, 197);
+            this.threeBtn.Location = new System.Drawing.Point(154, 159);
             this.threeBtn.Name = "threeBtn";
             this.threeBtn.Size = new System.Drawing.Size(41, 32);
             this.threeBtn.TabIndex = 12;
@@ -231,7 +234,7 @@
             // fourBtn
             // 
             this.fourBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.fourBtn.Location = new System.Drawing.Point(203, 197);
+            this.fourBtn.Location = new System.Drawing.Point(203, 159);
             this.fourBtn.Name = "fourBtn";
             this.fourBtn.Size = new System.Drawing.Size(41, 32);
             this.fourBtn.TabIndex = 13;
@@ -242,7 +245,7 @@
             // fiveBtn
             // 
             this.fiveBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.fiveBtn.Location = new System.Drawing.Point(254, 197);
+            this.fiveBtn.Location = new System.Drawing.Point(254, 159);
             this.fiveBtn.Name = "fiveBtn";
             this.fiveBtn.Size = new System.Drawing.Size(41, 32);
             this.fiveBtn.TabIndex = 14;
@@ -253,7 +256,7 @@
             // sixBtn
             // 
             this.sixBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.sixBtn.Location = new System.Drawing.Point(6, 235);
+            this.sixBtn.Location = new System.Drawing.Point(6, 197);
             this.sixBtn.Name = "sixBtn";
             this.sixBtn.Size = new System.Drawing.Size(41, 32);
             this.sixBtn.TabIndex = 15;
@@ -264,7 +267,7 @@
             // sevenBtn
             // 
             this.sevenBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.sevenBtn.Location = new System.Drawing.Point(58, 235);
+            this.sevenBtn.Location = new System.Drawing.Point(58, 197);
             this.sevenBtn.Name = "sevenBtn";
             this.sevenBtn.Size = new System.Drawing.Size(41, 32);
             this.sevenBtn.TabIndex = 16;
@@ -275,7 +278,7 @@
             // eightBtn
             // 
             this.eightBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.eightBtn.Location = new System.Drawing.Point(106, 235);
+            this.eightBtn.Location = new System.Drawing.Point(106, 197);
             this.eightBtn.Name = "eightBtn";
             this.eightBtn.Size = new System.Drawing.Size(41, 32);
             this.eightBtn.TabIndex = 17;
@@ -286,7 +289,7 @@
             // nineBtn
             // 
             this.nineBtn.Font = new System.Drawing.Font("Lora", 11F);
-            this.nineBtn.Location = new System.Drawing.Point(154, 235);
+            this.nineBtn.Location = new System.Drawing.Point(154, 197);
             this.nineBtn.Name = "nineBtn";
             this.nineBtn.Size = new System.Drawing.Size(41, 32);
             this.nineBtn.TabIndex = 18;
@@ -298,7 +301,7 @@
             // 
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(235)))), ((int)(((byte)(59)))));
             this.button12.Font = new System.Drawing.Font("Lora", 11F);
-            this.button12.Location = new System.Drawing.Point(2, 274);
+            this.button12.Location = new System.Drawing.Point(2, 236);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(294, 34);
             this.button12.TabIndex = 20;
@@ -310,7 +313,7 @@
             // 
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(235)))), ((int)(((byte)(59)))));
             this.button13.Font = new System.Drawing.Font("Lora", 11F);
-            this.button13.Location = new System.Drawing.Point(200, 235);
+            this.button13.Location = new System.Drawing.Point(200, 197);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(95, 32);
             this.button13.TabIndex = 21;
@@ -318,12 +321,29 @@
             this.button13.UseVisualStyleBackColor = false;
             this.button13.Click += new System.EventHandler(this.backspaceBtn_Click);
             // 
+            // userBMIStatus
+            // 
+            this.userBMIStatus.ForeColor = System.Drawing.Color.Transparent;
+            this.userBMIStatus.Location = new System.Drawing.Point(4, 333);
+            this.userBMIStatus.Name = "userBMIStatus";
+            this.userBMIStatus.Size = new System.Drawing.Size(293, 23);
+            this.userBMIStatus.TabIndex = 22;
+            this.userBMIStatus.ForeColorChanged += new System.EventHandler(this.CalculateBMIBtn_Click);
+            this.userBMIStatus.Click += new System.EventHandler(this.CalculateBMIBtn_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 400;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // BMICalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(157)))), ((int)(((byte)(219)))));
             this.ClientSize = new System.Drawing.Size(304, 441);
+            this.Controls.Add(this.userBMIStatus);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.nineBtn);
@@ -382,6 +402,8 @@
         private System.Windows.Forms.Button nineBtn;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.ProgressBar userBMIStatus;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
