@@ -61,10 +61,10 @@
             this.BMI_layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.83607F));
             this.BMI_layout.Controls.Add(this.ImperialRadioBtn, 1, 0);
             this.BMI_layout.Controls.Add(this.metricRadioBtn, 0, 0);
-            this.BMI_layout.Controls.Add(this.HeightLbl, 0, 1);
             this.BMI_layout.Controls.Add(this.WeightLbl, 1, 1);
             this.BMI_layout.Controls.Add(this.HeightTB, 0, 2);
             this.BMI_layout.Controls.Add(this.WeightTB, 1, 2);
+            this.BMI_layout.Controls.Add(this.HeightLbl, 0, 1);
             this.BMI_layout.Location = new System.Drawing.Point(4, 4);
             this.BMI_layout.Name = "BMI_layout";
             this.BMI_layout.RowCount = 3;
@@ -77,44 +77,47 @@
             // ImperialRadioBtn
             // 
             this.ImperialRadioBtn.AutoSize = true;
-            this.ImperialRadioBtn.Checked = true;
             this.ImperialRadioBtn.Font = new System.Drawing.Font("Lora", 20F);
             this.ImperialRadioBtn.Location = new System.Drawing.Point(151, 3);
             this.ImperialRadioBtn.Name = "ImperialRadioBtn";
             this.ImperialRadioBtn.Size = new System.Drawing.Size(141, 45);
             this.ImperialRadioBtn.TabIndex = 1;
-            this.ImperialRadioBtn.TabStop = true;
             this.ImperialRadioBtn.Text = "Imperial";
             this.ImperialRadioBtn.UseVisualStyleBackColor = true;
+            this.ImperialRadioBtn.CheckedChanged += new System.EventHandler(this.ImperialRadioBtn_CheckedChanged);
             // 
             // metricRadioBtn
             // 
             this.metricRadioBtn.AutoSize = true;
+            this.metricRadioBtn.Checked = true;
             this.metricRadioBtn.Font = new System.Drawing.Font("Lora", 20F);
             this.metricRadioBtn.Location = new System.Drawing.Point(3, 3);
             this.metricRadioBtn.Name = "metricRadioBtn";
             this.metricRadioBtn.Size = new System.Drawing.Size(120, 45);
             this.metricRadioBtn.TabIndex = 0;
+            this.metricRadioBtn.TabStop = true;
             this.metricRadioBtn.Text = "Metric";
             this.metricRadioBtn.UseVisualStyleBackColor = true;
+            this.metricRadioBtn.CheckedChanged += new System.EventHandler(this.metricRadioBtn_CheckedChanged);
             // 
             // HeightLbl
             // 
             this.HeightLbl.AutoSize = true;
-            this.HeightLbl.Font = new System.Drawing.Font("Lora", 19F);
+            this.HeightLbl.Font = new System.Drawing.Font("Lora", 13F);
             this.HeightLbl.Location = new System.Drawing.Point(3, 61);
             this.HeightLbl.Name = "HeightLbl";
-            this.HeightLbl.Size = new System.Drawing.Size(98, 78);
+            this.HeightLbl.Size = new System.Drawing.Size(100, 27);
             this.HeightLbl.TabIndex = 1;
             this.HeightLbl.Text = "My Height";
+            this.HeightLbl.Click += new System.EventHandler(this.metricRadioBtn_CheckedChanged);
             // 
             // WeightLbl
             // 
             this.WeightLbl.AutoSize = true;
-            this.WeightLbl.Font = new System.Drawing.Font("Lora", 19F);
+            this.WeightLbl.Font = new System.Drawing.Font("Lora", 13F);
             this.WeightLbl.Location = new System.Drawing.Point(151, 61);
             this.WeightLbl.Name = "WeightLbl";
-            this.WeightLbl.Size = new System.Drawing.Size(104, 78);
+            this.WeightLbl.Size = new System.Drawing.Size(104, 27);
             this.WeightLbl.TabIndex = 2;
             this.WeightLbl.Text = "My Weight";
             // 
@@ -146,6 +149,7 @@
             this.CalculateBMIBtn.TabIndex = 4;
             this.CalculateBMIBtn.Text = "Calculate BMI";
             this.CalculateBMIBtn.UseVisualStyleBackColor = false;
+            this.CalculateBMIBtn.Click += new System.EventHandler(this.CalculateBMIBtn_Click);
             // 
             // ResultsTB
             // 
@@ -304,19 +308,21 @@
             // 
             // button13
             // 
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(235)))), ((int)(((byte)(59)))));
             this.button13.Font = new System.Drawing.Font("Lora", 11F);
             this.button13.Location = new System.Drawing.Point(200, 235);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(95, 32);
             this.button13.TabIndex = 21;
             this.button13.Text = "Backspace";
-            this.button13.UseVisualStyleBackColor = true;
+            this.button13.UseVisualStyleBackColor = false;
             this.button13.Click += new System.EventHandler(this.backspaceBtn_Click);
             // 
             // BMICalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(157)))), ((int)(((byte)(219)))));
             this.ClientSize = new System.Drawing.Size(304, 441);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
@@ -336,6 +342,7 @@
             this.Controls.Add(this.CalculateBMIBtn);
             this.Controls.Add(this.BMI_layout);
             this.Font = new System.Drawing.Font("Lora", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
             this.MaximizeBox = false;
