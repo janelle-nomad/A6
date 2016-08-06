@@ -17,7 +17,7 @@ using System.Windows.Forms;
  * Date Created: July 21 2016
  * Program Description: This program calculates an individuals BMI a.k.a Body Mass Index
  * 
- * Version 0.0.4: Added splash scrren & progress bar  
+ * Version 0.0.5: Corrected minor documentatio error
  */
 namespace BMI_calc
 {
