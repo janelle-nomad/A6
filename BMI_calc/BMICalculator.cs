@@ -17,7 +17,7 @@ using System.Windows.Forms;
  * Date Created: July 21 2016
  * Program Description: This program calculates an individuals BMI a.k.a Body Mass Index
  * 
- * Version 0.0.5: Corrected minor documentatio error
+ * Version 0.0.6: Added more documentation 
  */
 namespace BMI_calc
 {
@@ -27,7 +27,7 @@ namespace BMI_calc
         public bool heightInput = false;
         public bool weightInput = false; // Sets the keypad buttons to zero 
 
-        // Priv
+        // Private variable
         private string _formulaType;
 
         public BMICalculator()
@@ -41,7 +41,7 @@ namespace BMI_calc
 
         }
 
-        /***
+        /**
          * *<summary>
          * Property Allows the program to use the appropriate formula when calculateing BMI
          * </summary>
@@ -62,6 +62,13 @@ namespace BMI_calc
          * @method {bool} 
          */
 
+        
+        private void HeightTB_Click(object sender, EventArgs e)
+        {
+            heightInput = true;
+            weightInput = false;
+        }
+
         /** PRIVATE METHODS
              * 
              * <summary>
@@ -70,11 +77,6 @@ namespace BMI_calc
              * </summary>
              * @method {bool} 
         */
-        private void HeightTB_Click(object sender, EventArgs e)
-        {
-            heightInput = true;
-            weightInput = false;
-        }
 
         private void WeightTB_Click(object sender, EventArgs e)
         {
@@ -88,7 +90,7 @@ namespace BMI_calc
          * to provide input into the textboxes
          * </summary>
          * 
-         * 
+         *@method Number_Click 
          */
         private void Number_Click(object sender, EventArgs e)
         {

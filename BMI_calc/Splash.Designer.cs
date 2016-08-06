@@ -1,6 +1,6 @@
 ﻿namespace BMI_calc
 {
-    partial class LoadingScreen
+    partial class Splash
     {
         /// <summary>
         /// Required designer variable.
@@ -58,7 +58,7 @@
             this.splashClock.Interval = 400;
             this.splashClock.Tick += new System.EventHandler(this.splashClock_Tick);
             // 
-            // LoadingScreen
+            // Splash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -66,9 +66,9 @@
             this.ClientSize = new System.Drawing.Size(396, 153);
             this.Controls.Add(this.Welcome);
             this.Controls.Add(this.prgsBar);
-            this.Name = "LoadingScreen";
+            this.Name = "Splash";
             this.Text = "Splash";
-            this.Load += new System.EventHandler(this.LoadingScreen_Load);
+            this.Load += new System.EventHandler(this.Splash_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -17,10 +17,10 @@ namespace BMI_calc
      * Version 4 ~ added splash screen
      * 
      */
-        //Driver class of Loading Screen
-    public partial class LoadingScreen : Form
+        // Driver class of Splash Screen
+    public partial class Splash : Form
     {
-        public LoadingScreen()
+        public Splash()
         {
             InitializeComponent();
         }
@@ -33,14 +33,14 @@ namespace BMI_calc
             {
                 splashClock.Enabled = false;
 
-                BMICalculator bmiCalculator = new BMICalculator();
+                BMICalculator BmiCalculator = new BMICalculator();
 
-                bmiCalculator.ShowDialog();
+                BmiCalculator.ShowDialog();
                 this.Close();
             }
         }
 
-        private void LoadingScreen_Load(object sender, EventArgs e)
+        private void Splash_Load(object sender, EventArgs e)
         {
 
         }
