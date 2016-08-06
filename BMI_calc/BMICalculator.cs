@@ -23,8 +23,11 @@ namespace BMI_calc
 {
     public partial class BMICalculator : Form
     {
+        // public variables
         public bool heightInput = false;
-        public bool weightInput = false;
+        public bool weightInput = false; // Sets the keypad buttons to zero 
+
+        // Priv
         private string _formulaType;
 
         public BMICalculator()
@@ -39,15 +42,35 @@ namespace BMI_calc
         }
 
         /***
-         * Allows the program to use the appropriate formula when calculateing BMI
-         * 
+         * *<summary>
+         * Property Allows the program to use the appropriate formula when calculateing BMI
+         * </summary>
+         * @property {string} Formula
          */
         public string ForumlaType
         {
             get { return this._formulaType; }
             set { this._formulaType = value; }
         }
-private void HeightTB_Click(object sender, EventArgs e)
+
+        /** PRIVATE METHODS
+         * 
+         * <summary>
+         * This method produces a requirement stating that if 'HeightTB.Textbox' has been
+         * clicked, then make the 'WeightTB.Textbox' void, unless it is clicked 
+         * </summary>
+         * @method {bool} 
+         */
+
+        /** PRIVATE METHODS
+             * 
+             * <summary>
+             * This method produces a requirement stating that if 'WeightTB.Textbox' has been
+             * clicked, then make the 'HeightTB.Textbox' void, unless it is clicked 
+             * </summary>
+             * @method {bool} 
+        */
+        private void HeightTB_Click(object sender, EventArgs e)
         {
             heightInput = true;
             weightInput = false;
@@ -59,6 +82,14 @@ private void HeightTB_Click(object sender, EventArgs e)
             weightInput = true;
         }
 
+        /**
+         * <summary>
+         * This will allow the number buttons from 0-9 to be active, so the user can use them
+         * to provide input into the textboxes
+         * </summary>
+         * 
+         * 
+         */
         private void Number_Click(object sender, EventArgs e)
         {
 
@@ -76,7 +107,12 @@ private void HeightTB_Click(object sender, EventArgs e)
             }
         }
 
-        /*Clear Button*/
+
+        /** PRIVATE METHOD
+         * <summary>
+         * This method intia;izes the Clear Button
+         * </summary>
+         */
         private void ClearBtn_Click(object sender, EventArgs e)
         {
             HeightTB.Text = "";
@@ -85,7 +121,11 @@ private void HeightTB_Click(object sender, EventArgs e)
             OutputTB.Text = "";
         }
 
-        /*Backspace Btn*/
+        /**PRIVATE METHOD
+         * <summary>
+         * Intializes the Backspace button
+         * </summary>
+         */
         private void backspaceBtn_Click(object sender, EventArgs e)
         {
             try
@@ -112,6 +152,15 @@ private void HeightTB_Click(object sender, EventArgs e)
             }
         }
 
+        /** PRIVATE METHOD
+         * 
+         * <SUMMARY>
+         * This is the private method for the metric radio button, it changes the labels once clicked
+         * </SUMMARY>
+         * 
+         * @method metricRadioBtn_CheckedChanged
+         * @returns {void}
+         */
         private void metricRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             HeightLbl.Text = "My Height CM";
@@ -119,6 +168,15 @@ private void HeightTB_Click(object sender, EventArgs e)
             this.ForumlaType = metricRadioBtn.Text;
         }
 
+        /** PRIVATE METHOD
+         * 
+         * <SUMMARY>
+         * This is the private method for the metric radio button, it changes the labels once clicked
+         * </SUMMARY>
+         * 
+         * @method imperialRadioBtn_CheckedChanged
+         * @returns {void}
+         */
         private void ImperialRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             HeightLbl.Text = "My Height IN";
@@ -126,19 +184,33 @@ private void HeightTB_Click(object sender, EventArgs e)
             this.ForumlaType = ImperialRadioBtn.Text;
         }
 
+
+        /** PUBLIC METHOD
+         * 
+         * <summary>
+         * Holds the _formula method
+         * </summary>
+         * @method formula
+         */
         public void formula()
         {
             this._formulaType = "Imperial";
         }
 
         
-        /***
+        /**Public Method
          * <summary>
          * This method performs the metric and Imperial methods
+         * Converts the user's values within the WeightTb.Textbox, and HeightTB.Textbox, into
+         * workable datatype, Double, and uses the _formulaType, to determine the formula to use
+         * based on the radio buttons that the user has clicked prior to clicking the CalculateBMI button 
          * </summary> 
          * 
+         * @method Calculation
+         * @returns {double}
          * 
          */
+
         public double Calculation()
         {
             double userBMI = 0;
@@ -158,20 +230,44 @@ private void HeightTB_Click(object sender, EventArgs e)
             }
             this.timer1.Start();
 
-            if (userBMI < 18.5)
-            {
-                userBMIStatus.ForeColor = Color.DarkOrange;
-            }
+            //if (userBMI < 18.5)
+            //{
+            //    userBMIStatus.ForeColor = Color.DarkOrange;
+            //}
 
-            else if (userBMI >= 18.5 && userBMI <= 24.9)
-            {
-                userBMIStatus.ForeColor = Color.MediumSeaGreen;
-            }
+            //else if (userBMI >= 18.5 && userBMI <= 24.9)
+            //{
+            //    userBMIStatus.ForeColor = Color.MediumSeaGreen;
+            //}
             return userBMI;
             
         }
 
-        public string bmiOutput()
+
+        private void CalculateBMIBtn_Click(object sender, EventArgs e)
+        {
+            ResultsTB.Text = "";
+            OutputTB.Text = "";
+
+            timer1.Start();
+            Calculation();
+            OutputTB.Text = UserResult();
+            ResultsTB.Text = bmiOutput();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.userBMIStatus.Increment(1);
+        }
+        /** PUBLIC METHOD
+         * <summary>
+         * Determines the user's BMI scale based on the user's BMI
+         * </summary>
+         * @method bmiOutput
+         * @returns {string}
+         */
+
+        public string bmiOutput() 
         {
             double userBMI = Calculation();
             string bmiOutput = "";
@@ -199,13 +295,20 @@ private void HeightTB_Click(object sender, EventArgs e)
 
             else if (userBMI >= 30)
             {
-                userBMIStatus.ForeColor = Color.Red;
+                userBMIStatus.ForeColor = Color.Red; //progress bar colors
                 bmiOutput = "Obese";
                 
             }
             return bmiOutput;
         }
 
+        /** PUBLIC METHOD
+         * <summary>
+         * Determines the user's BMI result based on the user's BMI
+         * </summary>
+         * @method userResult
+         * @returns {string}
+         */
         public string UserResult()
         {
             double userBMI = Calculation();
@@ -233,20 +336,6 @@ private void HeightTB_Click(object sender, EventArgs e)
             }
 
             return userResult;
-        }
-
-        private void CalculateBMIBtn_Click(object sender, EventArgs e)
-        {
-            ResultsTB.Text = "";
-            OutputTB.Text = "";
-
-            OutputTB.Text = UserResult();
-            ResultsTB.Text = bmiOutput();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            this.userBMIStatus.Increment(1);
         }
     }
 }
